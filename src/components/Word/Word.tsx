@@ -59,6 +59,10 @@ const Word: React.FC<IWord> = ({id, value, className}) => {
     };
 
     const handleEditingStatus = () => {
+        setInputError({
+            isError: false,
+            message: '',
+        });
         setEditingStatus(!isEditing);
 
         if (!isEditing) {
@@ -79,7 +83,8 @@ const Word: React.FC<IWord> = ({id, value, className}) => {
             <div className='edit-word'>
                 <span className="caption">редактирование синонима:</span>
                 <form onSubmit={handleFormOnSubmit}>
-                    <TextField ref={inputRef} autoFocus isError={inputError.isError} errorMessage={inputError.message} value={input}
+                    <TextField ref={inputRef} autoFocus isError={inputError.isError} errorMessage={inputError.message}
+                               value={input}
                                onChange={handleChangeInput}/>
                     <div className="buttons buttons-edit-word">
                         <Button type="primary" onClick={handleSaveEditingButtonClick}>Изменить</Button>
@@ -94,8 +99,7 @@ const Word: React.FC<IWord> = ({id, value, className}) => {
                 <h3>{value}</h3>
                 <div className="buttons buttons-word">
                     <div className="icon pen-icon" onClick={handleEditingStatus}>
-                        <PenIcon onClick={() => {
-                        }}/>
+                        <PenIcon/>
                     </div>
                     <div className="icon trash-can-icon" onClick={handleDeleting}>
                         <TrashCanIcon/>
